@@ -1,0 +1,22 @@
+# Python bytecode and cache
+__pycache__/
+
+
+# Project specific outputs and logs
+outputs/
+
+
+logical_fallacy_data.csv
+# data/
+
+# Virtual environments (common names)
+venv/
+env/
+.venv/
+
+# Environment variables / Secrets
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db

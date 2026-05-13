@@ -1,0 +1,124 @@
+PS C:\Users\User\Desktop\NLP Project> python main.py
+[INFO] Outputs will be saved to: C:\Users\User\Desktop\NLP Project\outputs
+Loading dataset from HuggingFace: tasksource/logical-fallacy
+Successfully loaded 3761 samples from HuggingFace.
+Dataset Summary
+Total samples:          3761
+Training samples:       3008
+Test samples:           753
+Number of classes:      13
+Classes: ['ad hominem', 'ad populum', 'appeal to emotion', 'circular reasoning', 'equivocation', 'fallacy of credibility', 'fallacy of extension', 'fallacy of logic', 'fallacy of relevance', 'false causality', 'false dilemma', 'faulty generalization', 'intentional']
+Training: TF-IDF + Logistic Regression (Baseline)
+[INFO] Baseline model trained successfully.
+Evaluation: BASELINE
+                        precision    recall  f1-score   support
+
+            ad hominem       0.52      0.54      0.53        80
+            ad populum       0.49      0.47      0.48        59
+     appeal to emotion       0.34      0.35      0.35        62
+    circular reasoning       0.49      0.77      0.60        35
+          equivocation       0.09      0.07      0.08        15
+fallacy of credibility       0.28      0.34      0.31        53
+  fallacy of extension       0.49      0.54      0.51        41
+      fallacy of logic       0.26      0.23      0.24        48
+  fallacy of relevance       0.29      0.25      0.27        53
+       false causality       0.49      0.60      0.54        58
+         false dilemma       0.59      0.53      0.56        38
+ faulty generalization       0.60      0.43      0.50       115
+           intentional       0.32      0.32      0.32        96
+
+              accuracy                           0.43       753
+             macro avg       0.40      0.42      0.41       753
+          weighted avg       0.43      0.43      0.42       753
+
+Saved Classification report -> C:\Users\User\Desktop\NLP Project\outputs\baseline_classification_report.csv
+Accuracy:               0.4263
+Macro-F1:               0.4065
+Macro-Precision:                0.4036
+Macro-Recall:           0.4187
+Saved Confusion matrix -> C:\Users\User\Desktop\NLP Project\outputs\baseline_confusion_matrix.png
+Error analysis (432 misclassified) -> C:\Users\User\Desktop\NLP Project\outputs\baseline_errors.csv
+Training: DistilBERT (Fine-tuned Transformer)
+Training on CPU which will take some time
+Tokenizing texts ...
+Some weights of DistilBertForSequenceClassification were not initialized from the model checkpoint at distilbert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight', 'pre_classifier.bias', 'pre_classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Starting DistilBERT fine-tuning
+  0%|                                                                            | 0/564 [00:00<?, ?it/s]C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\data\dataloader.py:668: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  warnings.warn(warn_msg)
+{'loss': 2.4981, 'grad_norm': 3.0696558952331543, 'learning_rate': 1.8262411347517733e-05, 'epoch': 0.27}
+{'loss': 2.4136, 'grad_norm': 3.090057849884033, 'learning_rate': 1.648936170212766e-05, 'epoch': 0.53}   
+{'loss': 2.3361, 'grad_norm': 4.125387191772461, 'learning_rate': 1.471631205673759e-05, 'epoch': 0.8}    
+{'eval_loss': 2.218052864074707, 'eval_accuracy': 0.2775564409030544, 'eval_f1': 0.13635486590272378, 'eval_precision': 0.2421566032425761, 'eval_recall': 0.1751098343181811, 'eval_runtime': 89.2971, 'eval_samples_per_second': 8.433, 'eval_steps_per_second': 0.269, 'epoch': 1.0}
+ 33%|██████████████████████                                            | 188/564 [27:32<50:27,  8.05s/it]C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\data\dataloader.py:668: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  warnings.warn(warn_msg)
+{'loss': 2.2447, 'grad_norm': 4.615434646606445, 'learning_rate': 1.2943262411347518e-05, 'epoch': 1.06}
+{'loss': 2.1182, 'grad_norm': 4.320473670959473, 'learning_rate': 1.1170212765957447e-05, 'epoch': 1.33}  
+{'loss': 2.0788, 'grad_norm': 5.574173450469971, 'learning_rate': 9.397163120567377e-06, 'epoch': 1.6}    
+{'loss': 2.0101, 'grad_norm': 5.236216068267822, 'learning_rate': 7.624113475177306e-06, 'epoch': 1.86}   
+{'eval_loss': 1.9888182878494263, 'eval_accuracy': 0.3851261620185923, 'eval_f1': 0.2704785168409243, 'eval_precision': 0.5494349988032318, 'eval_recall': 0.2919776642115255, 'eval_runtime': 84.8982, 'eval_samples_per_second': 8.869, 'eval_steps_per_second': 0.283, 'epoch': 2.0}
+ 67%|████████████████████████████████████████████                      | 376/564 [53:13<24:06,  7.69s/it]C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\data\dataloader.py:668: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  warnings.warn(warn_msg)
+{'loss': 1.9253, 'grad_norm': 4.892970085144043, 'learning_rate': 5.851063829787235e-06, 'epoch': 2.13}
+{'loss': 1.8409, 'grad_norm': 6.314065933227539, 'learning_rate': 4.078014184397163e-06, 'epoch': 2.39}   
+{'loss': 1.8921, 'grad_norm': 7.4041008949279785, 'learning_rate': 2.3049645390070924e-06, 'epoch': 2.66} 
+{'loss': 1.7672, 'grad_norm': 8.717755317687988, 'learning_rate': 5.319148936170213e-07, 'epoch': 2.93}   
+{'eval_loss': 1.9283559322357178, 'eval_accuracy': 0.40903054448871184, 'eval_f1': 0.300015232851796, 'eval_precision': 0.49870101775381276, 'eval_recall': 0.32157739268870256, 'eval_runtime': 109.5754, 'eval_samples_per_second': 6.872, 'eval_steps_per_second': 0.219, 'epoch': 3.0}
+{'train_runtime': 4965.5212, 'train_samples_per_second': 1.817, 'train_steps_per_second': 0.114, 'train_loss': 2.096508668669572, 'epoch': 3.0}
+100%|████████████████████████████████████████████████████████████████| 564/564 [1:22:45<00:00,  8.80s/it] 
+DistilBERT training complete!
+C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\data\dataloader.py:668: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  warnings.warn(warn_msg)
+100%|████████████████████████████████████████████████████████████████████| 24/24 [01:34<00:00,  3.95s/it] 
+Evaluation: DISTILBERT
+                        precision    recall  f1-score   support
+
+            ad hominem       0.41      0.75      0.53        80
+            ad populum       0.59      0.56      0.57        59
+     appeal to emotion       0.44      0.23      0.30        62
+    circular reasoning       0.67      0.17      0.27        35
+          equivocation       0.00      0.00      0.00        15
+fallacy of credibility       0.00      0.00      0.00        53
+  fallacy of extension       0.67      0.05      0.09        41
+      fallacy of logic       1.00      0.02      0.04        48
+  fallacy of relevance       0.80      0.08      0.14        53
+       false causality       0.49      0.64      0.56        58
+         false dilemma       0.75      0.39      0.52        38
+ faulty generalization       0.34      0.61      0.43       115
+           intentional       0.33      0.69      0.45        96
+
+              accuracy                           0.41       753
+             macro avg       0.50      0.32      0.30       753
+          weighted avg       0.48      0.41      0.35       753
+
+Saved Classification report -> C:\Users\User\Desktop\NLP Project\outputs\distilbert_classification_report.csv
+Accuracy:               0.4090
+Macro-F1:               0.3000
+Macro-Precision:                0.4987
+Macro-Recall:           0.3216
+Saved Confusion matrix -> C:\Users\User\Desktop\NLP Project\outputs\distilbert_confusion_matrix.png
+Error analysis (445 misclassified) -> C:\Users\User\Desktop\NLP Project\outputs\distilbert_errors.csv
+Comparative Analysis:
+Saved Comparative analysis -> C:\Users\User\Desktop\NLP Project\outputs\comparative_error_analysis.csv
+Both correct:            196 samples
+Both wrong:              320 samples
+Only baseline correct:   125 samples
+Only DistilBERT correct:         112 samples
+Total test samples:      753 samples
+
+[SAVED] Model comparison -> C:\Users\User\Desktop\NLP Project\outputs\model_comparison.csv
+ Results summary:
+  baseline    0.4263    0.4065           0.4036        0.4187
+distilbert    0.4090    0.3000           0.4987        0.3216
+
+  All output files saved in: C:\Users\User\Desktop\NLP Project\outputs
+
+  Generated files:
+baseline_classification_report.csv (1.3 KB)
+baseline_confusion_matrix.png (157.8 KB)
+baseline_errors.csv (87.0 KB)
+comparative_error_analysis.csv (165.3 KB)
+distilbert_classification_report.csv (1.1 KB)
+distilbert_confusion_matrix.png (156.9 KB)
+distilbert_errors.csv (91.0 KB)
+model_comparison.csv (0.1 KB)
